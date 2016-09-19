@@ -4,6 +4,17 @@
       .question-error
       .comment-errors
       = render @question
+.row
+  hr
+  .answers data={ question_id: "#{@question.id}" }
+    = render @question.answers
+
+  = form_for [@question, @answer], remote:true do |f|
+    = f.label :body,  'Ответ'
+    = f.text_area :body
+    = f.submit 'OK'
+
+    /= render @question.answers
     / .row
     /   .col-md-4.col-md-offset-2
     /     = render 'comments/comments', resource: @question

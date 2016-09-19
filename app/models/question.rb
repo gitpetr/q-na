@@ -2,7 +2,7 @@ class Question < ActiveRecord::Base
   # include Votable
   # include Attachable
   
-  # has_many :answers, dependent: :destroy
+  has_many :answers, dependent: :destroy
   # has_many  :comments, as: :commentable, dependent: :destroy
   # has_many :attachments, as: :attachable 
   # has_many :subscribe_lists, dependent: :destroy
