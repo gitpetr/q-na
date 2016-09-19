@@ -4,7 +4,7 @@ class Question < ActiveRecord::Base
   
   has_many :answers, dependent: :destroy
   # has_many  :comments, as: :commentable, dependent: :destroy
-  # has_many :attachments, as: :attachable 
+  has_many :attachments #, as: :attachable 
   # has_many :subscribe_lists, dependent: :destroy
   # has_many :subscribers, class_name: 'User', through: :subscribe_lists
   # belongs_to :user
@@ -13,7 +13,7 @@ class Question < ActiveRecord::Base
   validates :body, presence: true, length: { maximum: 1400 }
   # validates :user, presence: true
 
-  # accepts_nested_attributes_for :attachments, reject_if: proc { |attrib| attrib['file'].nil? }, allow_destroy: true
+  accepts_nested_attributes_for :attachments #, reject_if: proc { |attrib| attrib['file'].nil? }, allow_destroy: true
 
   # scope :created_yesterday, -> { where(created_at: Time.zone.now.yesterday.all_day) }
 

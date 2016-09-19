@@ -25,6 +25,7 @@ class QuestionsController < ApplicationController
 
   def new
     @question = Question.new
+    @question.attachments.build
     #respond_with(@question = Question.new)
   end
 

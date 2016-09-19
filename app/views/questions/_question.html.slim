@@ -1,3 +1,8 @@
 h1= @question.title
 p= @question.body
+p Attachments:
+ul
+  - @question.attachments.each do |a|
+    li= a.file.file.filename
+    li= link_to (image_tag a.file.url), a.file.url
 = link_to 'Delete', @question, method: :delete, data: {confirm: 'delete?'}

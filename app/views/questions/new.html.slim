@@ -5,4 +5,9 @@
         = f.text_field :title, label: "Title"
         = f.text_area :body, label: "Text"
        
+      p Attachments:
+      p 
+        = f.fields_for :attachments do |a|
+          = a.label :file
+          = a.file_field :file
       p= f.submit 'Create', class: "btn btn-primary"
