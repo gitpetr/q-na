@@ -1,4 +1,12 @@
-p= answer.body
+- if answer.persisted?
+  p= answer.body
+  - if user_signed_in?
+    p= link_to 'Edit', '', class: 'edit-answer-link btn btn-danger btn-xs', data: { answer_id: answer.id }, remote: true
+    p
+      = form_for [@question, answer], remote:true, html: { id: "edit-answer-#{answer.id}"} do |f|
+        = f.label :body,  'Редактировать'
+        = f.text_area :body
+        = f.submit 'OK'
 
- 
+   
 

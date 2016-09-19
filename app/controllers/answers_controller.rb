@@ -7,6 +7,9 @@ class AnswersController < ApplicationController
     #redirect_to question_path(@answer.question)
   end
 
+  def update
+    @answer.update answer_params
+  end
   private
 
   def load_question
