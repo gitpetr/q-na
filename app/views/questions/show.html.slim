@@ -1,0 +1,29 @@
+.row
+  .col-md-6.col-md-offset-3
+    .question
+      .question-error
+      .comment-errors
+      = render @question
+    / .row
+    /   .col-md-4.col-md-offset-2
+    /     = render 'comments/comments', resource: @question
+    /     = render 'comments/form', resource: @question
+    / .row
+    /   hr
+    /   .answers data={ question_id: "#{@question.id}" }
+    /     = render @question.answers
+    /     .answer-errors
+    /   - if can?(:create, @answer)
+    /     .user-auth data={ current_user: "#{ current_user.id }"}
+    /     = bootstrap_nested_form_for [@question, @answer], remote: true do |f|
+    /       = f.text_area :body, label: 'Answer'
+    /       = f.fields_for :attachments, @answer.attachments.build do |a|
+    /         = a.file_field :file, label: "File"
+    /         = a.link_to_remove "Clear", class: "btn btn-xs btn-default float_left"
+    /       = f.link_to_add 'Add more', :attachments, class: "btn btn-xs btn-default", style: "margin-left: 5px;"
+    /       p
+    /       = f.submit 'Create', class: "btn btn-primary"
+    /   - else
+    /     | Sign in or sign up to leave answers
+
+    /   = subscribe_to "/questions/#{@question.id}"
