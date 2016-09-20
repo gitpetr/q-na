@@ -3,7 +3,7 @@ class Question < ActiveRecord::Base
   # include Attachable
   
   has_many :answers, dependent: :destroy
-  # has_many  :comments, as: :commentable, dependent: :destroy
+  has_many  :comments, as: :commentable, dependent: :destroy
   has_many :attachments #, as: :attachable 
   # has_many :subscribe_lists, dependent: :destroy
   # has_many :subscribers, class_name: 'User', through: :subscribe_lists

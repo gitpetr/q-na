@@ -3,6 +3,13 @@ p= @question.body
 p Attachments:
 ul
   - @question.attachments.each do |a|
-    li= a.file.file.filename
+    li= a.file.file.filename if  a.file.file
     li= link_to (image_tag a.file.url), a.file.url
+.comments
+  =form_for [@question, @question.comments.build], remote: true do |f|
+    p
+      = f.label :body, 'Comment'
+      = f.text_area :body
+    p
+      = f.submit 'Post comment'
 = link_to 'Delete', @question, method: :delete, data: {confirm: 'delete?'}
