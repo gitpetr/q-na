@@ -13,7 +13,7 @@ class QuestionsController < ApplicationController
   # include Voted
 
   def index
-    @questions = Question.all
+    @questions = police_scope Question.all
     # respond_with(@questions = Question.all)
     #respond_with(@questions = Question.paginate(page: params[:page]).order('created_at DESC'))
   end
@@ -25,15 +25,18 @@ class QuestionsController < ApplicationController
 
   def new
     @question = Question.new
+    authorize @question
+
     @question.attachments.build
     #respond_with(@question = Question.new)
   end
 
   def edit
-
+    authorize @question
   end
 
   def create
+    authorize @question
     @question = Question.new question_params
     if @question.save 
       redirect_to @question
@@ -43,6 +46,7 @@ class QuestionsController < ApplicationController
   end
 
   def update
+    authorize @question
     if @question.update(question_params)
       redirect_to @question
     else render :edit 
@@ -52,6 +56,7 @@ class QuestionsController < ApplicationController
   end
 
   def destroy
+    authorize @question
     @question.destroy
     redirect_to questions_path
     #@respond_with(@question.destroy)

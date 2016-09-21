@@ -50,3 +50,4 @@ gem 'devise'
 gem 'twitter-bootstrap-rails'
 gem 'bootstrap_form'
 gem 'carrierwave'
+gem "pundit"
