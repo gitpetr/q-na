@@ -11,7 +11,7 @@ class QuestionsController < ApplicationController
 
   # include PublicIndex
   # include Voted
-
+  authorize_resource
   def index
     @questions = Question.all
     # respond_with(@questions = Question.all)
