@@ -5,7 +5,7 @@ class QuestionsController < ApplicationController
   # # before_action :check_user, only: :destroy
   # after_action  :publish_question, only: :create
 
-  # authorize_resource
+  #authorize_resource
 
   # respond_to :js, only: :update
 
@@ -13,30 +13,26 @@ class QuestionsController < ApplicationController
   # include Voted
 
   def index
-    @questions = police_scope Question.all
+    @questions =  Question.all
     # respond_with(@questions = Question.all)
     #respond_with(@questions = Question.paginate(page: params[:page]).order('created_at DESC'))
   end
 
   def show
-
     #respond_with(@question)
   end
 
   def new
     @question = Question.new
-    authorize @question
 
     @question.attachments.build
     #respond_with(@question = Question.new)
   end
 
   def edit
-    authorize @question
   end
 
   def create
-    authorize @question
     @question = Question.new question_params
     if @question.save 
       redirect_to @question
@@ -46,7 +42,6 @@ class QuestionsController < ApplicationController
   end
 
   def update
-    authorize @question
     if @question.update(question_params)
       redirect_to @question
     else render :edit 
@@ -56,7 +51,7 @@ class QuestionsController < ApplicationController
   end
 
   def destroy
-    authorize @question
+     
     @question.destroy
     redirect_to questions_path
     #@respond_with(@question.destroy)

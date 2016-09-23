@@ -51,3 +51,4 @@ gem 'twitter-bootstrap-rails'
 gem 'bootstrap_form'
 gem 'carrierwave'
 gem "pundit"
+gem 'doorkeeper', '~> 4.2'
